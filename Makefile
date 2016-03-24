@@ -1,7 +1,7 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 
-TMPNB_IMAGE:=jupyter/tmpnb@sha256:54c39158eb83085bc6f445772b70d975f8b747af4159474f5407cfa2e0f390c7
+TMPNB_IMAGE:=jupyter/tmpnb@sha256:965bca52cb7660a2bb0532c6871d5744e9591283b6597ca992c80d960f7009ca
 PROXY_IMAGE:=jupyter/configurable-http-proxy@sha256:f84940db7ddf324e35f1a5935070e36832cc5c1f498efba4d69d7b962eec5d08
 NOTEBOOK_IMAGE:=jupyterincubator/dashboards-widgets-cm-notebook
 
