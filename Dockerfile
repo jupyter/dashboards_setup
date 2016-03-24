@@ -13,7 +13,7 @@ RUN apt-get update && \
         npm install -g bower && \
         ln -s /usr/bin/nodejs /usr/bin/node
 
-# Install library dependencies early to avoid cache busting
+# Install library dependencies early to avoid reinstall on cache bust
 USER jovyan
 RUN conda install seaborn futures pandas=0.18
 USER root
@@ -22,11 +22,6 @@ USER root
 COPY resources/jupyter_notebook_config.partial.py /tmp/
 RUN cat /tmp/jupyter_notebook_config.partial.py >> /home/jovyan/.jupyter/jupyter_notebook_config.py && \
     rm /tmp/jupyter_notebook_config.partial.py
-
-# Copy index intro
-COPY resources/index.ipynb /home/jovyan/work/index.ipynb
-RUN sed -i "s/{{DATE}}/$(date +'%Y-%m-%d')/g" /home/jovyan/work/index.ipynb && \
-    chown jovyan /home/jovyan/work/index.ipynb
 
 COPY resources/templates/ /srv/templates/
 RUN chmod a+rX /srv/templates
@@ -87,6 +82,13 @@ RUN cd /tmp && \
 COPY resources/2015-notebook-ux-survey-dashboard.tar.gz /home/jovyan/work/2015-notebook-ux-survey/analysis/
 RUN cd $HOME/work/2015-notebook-ux-survey/analysis/ && \
     tar xzf *.tar.gz
+
+# Copy index intro late to avoid cache busting
+USER root
+COPY resources/index.ipynb /home/jovyan/work/index.ipynb
+RUN sed -i "s/{{DATE}}/$(date +'%Y-%m-%d')/g" /home/jovyan/work/index.ipynb && \
+    chown jovyan /home/jovyan/work/index.ipynb
+USER jovyan
 
 # Trust all notebooks
 RUN find /home/jovyan/work -name '*.ipynb' -exec jupyter trust {} \;
