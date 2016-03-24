@@ -13,20 +13,15 @@ RUN apt-get update && \
         npm install -g bower && \
         ln -s /usr/bin/nodejs /usr/bin/node
 
-# Install library dependencies early to avoid cache busting
+# Install library dependencies early to avoid reinstall on cache bust
 USER jovyan
-RUN conda install seaborn futures
+RUN conda install seaborn futures pandas=0.18
 USER root
 
 # Add additional config
 COPY resources/jupyter_notebook_config.partial.py /tmp/
 RUN cat /tmp/jupyter_notebook_config.partial.py >> /home/jovyan/.jupyter/jupyter_notebook_config.py && \
     rm /tmp/jupyter_notebook_config.partial.py
-
-# Copy index intro
-COPY resources/index.ipynb /home/jovyan/work/index.ipynb
-RUN sed -i "s/{{DATE}}/$(date +'%Y-%m-%d')/g" /home/jovyan/work/index.ipynb && \
-    chown jovyan /home/jovyan/work/index.ipynb
 
 COPY resources/templates/ /srv/templates/
 RUN chmod a+rX /srv/templates
@@ -36,7 +31,8 @@ USER jovyan
 
 ENV DASHBOARDS_VERSION 0.4.2
 ENV DASHBOARDS_BUNDLERS_VERSION 0.3.1
-ENV DECL_WIDGETS_VERSION 0.4.1
+# HACK: using pre-release for some chart fixes for ux survey + polymer version fix
+ENV DECL_WIDGETS_VERSION 0.4.3.dev0
 ENV CMS_VERSION 0.4.0
 
 # Install incubator extensions
@@ -60,8 +56,9 @@ RUN cd /tmp && \
     find $HOME/work/contentmanagement -type f -name '*.ipynb' -print0 | xargs -0 sed -i 's/mywb\./mywb\.contentmanagement\./g' && \
     rm -rf /tmp/contentmanagement* && \
     rm -f /tmp/src.tar.gz
+# HACK: switch back to env var when there's a stable 0.4.3 release
 RUN cd /tmp && \
-    wget -qO src.tar.gz https://github.com/jupyter-incubator/declarativewidgets/archive/$DECL_WIDGETS_VERSION.tar.gz && \
+    wget -qO src.tar.gz https://github.com/jupyter-incubator/declarativewidgets/archive/0.4.2.tar.gz && \
     tar xzf src.tar.gz && \
     mv declarativewidgets*/etc/notebooks $HOME/work/declarativewidgets && \
     rm -rf /tmp/declarativewidgets* && \
@@ -73,6 +70,25 @@ RUN cd /tmp && \
     find $HOME/work/dashboards -type f -name '*.ipynb' -print0 | xargs -0 sed -i 's$/home/jovyan/work$/home/jovyan/work/dashboards$g' && \
     rm -rf /tmp/dashboards* && \
     rm -f /tmp/src.tar.gz
+
+# Add the 2015 UX survey notebook / dashboard
+RUN cd /tmp && \
+    wget -qO src.tar.gz https://github.com/ibm-et/design/archive/ac943c99e4cfd587e1a5076e9972c62af65faff4.tar.gz && \
+    tar xzf src.tar.gz && \
+    mv design*/surveys/2015-notebook-ux $HOME/work/2015-notebook-ux-survey && \
+    find $HOME/work/2015-notebook-ux-survey -type f -name '*.ipynb' -print0 | xargs -0 sed -i 's$\./prep/$/home/jovyan/work/2015-notebook-ux-survey/analysis/prep/$g' && \
+    rm -rf /tmp/design* && \
+    rm -f /tmp/src.tar.gz
+COPY resources/2015-notebook-ux-survey-dashboard.tar.gz /home/jovyan/work/2015-notebook-ux-survey/analysis/
+RUN cd $HOME/work/2015-notebook-ux-survey/analysis/ && \
+    tar xzf *.tar.gz
+
+# Copy index intro late to avoid cache busting
+USER root
+COPY resources/index.ipynb /home/jovyan/work/index.ipynb
+RUN sed -i "s/{{DATE}}/$(date +'%Y-%m-%d')/g" /home/jovyan/work/index.ipynb && \
+    chown jovyan /home/jovyan/work/index.ipynb
+USER jovyan
 
 # Trust all notebooks
 RUN find /home/jovyan/work -name '*.ipynb' -exec jupyter trust {} \;
