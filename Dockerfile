@@ -32,7 +32,7 @@ USER jovyan
 ENV DASHBOARDS_VERSION 0.4.2
 ENV DASHBOARDS_BUNDLERS_VERSION 0.3.1
 # HACK: using pre-release for some chart fixes for ux survey + polymer version fix
-ENV DECL_WIDGETS_VERSION 0.4.5
+ENV DECL_WIDGETS_VERSION 0.5.0
 ENV CMS_VERSION 0.4.0
 
 # Install incubator extensions
