@@ -1,7 +1,7 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 
-FROM jupyter/all-spark-notebook:8021f892543c
+FROM jupyter/all-spark-notebook:2d878db5cbff
 
 # Become root to do the apt-gets
 USER root
@@ -29,11 +29,10 @@ RUN chmod a+rX /srv/templates
 # Do the remaining installs as the unprivileged notebook user
 USER jovyan
 
-ENV DASHBOARDS_VERSION 0.4.2
-ENV DASHBOARDS_BUNDLERS_VERSION 0.3.1
-# HACK: using pre-release for some chart fixes for ux survey + polymer version fix
-ENV DECL_WIDGETS_VERSION 0.4.3.dev0
-ENV CMS_VERSION 0.4.0
+ENV DASHBOARDS_VERSION 0.5.0
+ENV DASHBOARDS_BUNDLERS_VERSION 0.5.0
+ENV DECL_WIDGETS_VERSION 0.4.5
+ENV CMS_VERSION 0.5.0
 
 # Install incubator extensions
 RUN pip install jupyter_dashboards==$DASHBOARDS_VERSION \
@@ -56,9 +55,8 @@ RUN cd /tmp && \
     find $HOME/work/contentmanagement -type f -name '*.ipynb' -print0 | xargs -0 sed -i 's/mywb\./mywb\.contentmanagement\./g' && \
     rm -rf /tmp/contentmanagement* && \
     rm -f /tmp/src.tar.gz
-# HACK: switch back to env var when there's a stable 0.4.3 release
 RUN cd /tmp && \
-    wget -qO src.tar.gz https://github.com/jupyter-incubator/declarativewidgets/archive/0.4.2.tar.gz && \
+    wget -qO src.tar.gz https://github.com/jupyter-incubator/declarativewidgets/archive/$DECL_WIDGETS_VERSION.tar.gz && \
     tar xzf src.tar.gz && \
     mv declarativewidgets*/etc/notebooks $HOME/work/declarativewidgets && \
     rm -rf /tmp/declarativewidgets* && \
@@ -73,7 +71,7 @@ RUN cd /tmp && \
 
 # Add the 2015 UX survey notebook / dashboard
 RUN cd /tmp && \
-    wget -qO src.tar.gz https://github.com/ibm-et/design/archive/ac943c99e4cfd587e1a5076e9972c62af65faff4.tar.gz && \
+    wget -qO src.tar.gz https://github.com/jupyter/design/archive/db7e9cc9be50223ba55ed9da30c0cc4ccd8adf86.tar.gz && \
     tar xzf src.tar.gz && \
     mv design*/surveys/2015-notebook-ux $HOME/work/2015-notebook-ux-survey && \
     find $HOME/work/2015-notebook-ux-survey -type f -name '*.ipynb' -print0 | xargs -0 sed -i 's$\./prep/$/home/jovyan/work/2015-notebook-ux-survey/analysis/prep/$g' && \
