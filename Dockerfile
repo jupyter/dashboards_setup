@@ -32,7 +32,7 @@ USER jovyan
 ENV DASHBOARDS_VERSION 0.4.2
 ENV DASHBOARDS_BUNDLERS_VERSION 0.3.1
 # HACK: using pre-release for some chart fixes for ux survey + polymer version fix
-ENV DECL_WIDGETS_VERSION 0.4.3.dev0
+ENV DECL_WIDGETS_VERSION 0.5.0
 ENV CMS_VERSION 0.4.0
 
 # Install incubator extensions
@@ -56,9 +56,8 @@ RUN cd /tmp && \
     find $HOME/work/contentmanagement -type f -name '*.ipynb' -print0 | xargs -0 sed -i 's/mywb\./mywb\.contentmanagement\./g' && \
     rm -rf /tmp/contentmanagement* && \
     rm -f /tmp/src.tar.gz
-# HACK: switch back to env var when there's a stable 0.4.3 release
 RUN cd /tmp && \
-    wget -qO src.tar.gz https://github.com/jupyter-incubator/declarativewidgets/archive/0.4.2.tar.gz && \
+    wget -qO src.tar.gz https://github.com/jupyter-incubator/declarativewidgets/archive/$DECL_WIDGETS_VERSION.tar.gz && \
     tar xzf src.tar.gz && \
     mv declarativewidgets*/etc/notebooks $HOME/work/declarativewidgets && \
     rm -rf /tmp/declarativewidgets* && \
