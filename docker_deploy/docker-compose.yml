@@ -9,23 +9,24 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.notebook
-    image: jupyter-box/notebook
     ports:
       - "8888:8888"
     depends_on:
       - dashboards
     links:
       - dashboards
+    volumes:
+      - work:/home/jovyan/work
     environment:
         DASHBOARD_REDIRECT_URL: http://{hostname}:3000/
         DASHBOARD_SERVER_URL: http://dashboards:3000/
         DASHBOARD_SERVER_AUTH_TOKEN: notebook_to_dashboard_secret
+        PASSWORD: demo
 
   dashboards:
     build:
       context: .
       dockerfile: Dockerfile.dashboards
-    image: jupyter-box/dashboards
     ports:
       - "3000:3000"
     depends_on:
@@ -43,6 +44,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.kernel
-    image: jupyter-box/kernel_gateway
     environment:
       KG_ALLOW_ORIGIN: '*'
+
+volumes:
+  work:
