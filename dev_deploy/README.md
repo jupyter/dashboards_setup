@@ -1,4 +1,4 @@
-This folder contains a recipe for local testing of the end-to-end workflow of writing notebooks, adding declarative widgets to them, laying them out as dashboards, bundling them for deployment, and viewing them on a dashboard server. By default, it uses stable releases of each component, but has the ability to replace most components with development snapshots either from PyPI/npm or local source trees.
+This folder contains a recipe for local testing of the end-to-end workflow of writing notebooks, adding declarative widgets to them, laying them out as dashboards, bundling them for deployment, and viewing them on a dashboard server. By default, it uses a stable releases for each component, but has the ability to replace most components with development snapshots either from PyPI/npm or local source trees.
 
 ## Prerequisites
 
