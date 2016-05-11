@@ -26,7 +26,7 @@ services:
     links:
       - dashboards
     environment:
-        DASHBOARD_REDIRECT_URL: http://{hostname}:4000/
+        DASHBOARD_REDIRECT_URL: http://{hostname}:3000/
         DASHBOARD_SERVER_URL: http://dashboards:3000/
         DASHBOARD_SERVER_AUTH_TOKEN: notebook_to_dashboard_secret
 
