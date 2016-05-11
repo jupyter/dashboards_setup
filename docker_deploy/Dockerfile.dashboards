@@ -7,7 +7,8 @@ FROM node:6
 # are root. This setting works around that issue.
 RUN npm config set unsafe-perm true
 
-RUN npm install -g jupyter-dashboards-server@">=0.5.0 <0.6.0"
+ARG DASHBOARDS_SERVER_VER
+RUN npm install -g jupyter-dashboards-server@"$DASHBOARDS_SERVER_VER"
 
 # always expose server on all interfaces in a container
 ENV IP 0.0.0.0
