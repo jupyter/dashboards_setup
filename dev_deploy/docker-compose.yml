@@ -14,9 +14,9 @@ services:
       # stable release set in the Dockerfile
       # args:
       #   DASHBOARDS: /src/jupyter_dashboards-0.6.0.dev0.tar.gz
-      #   CMS /src/jupyter_cms-someversion.tar.gz
-      #   DASHBOARDS_BUNDLERS /src/jupyter_dashboards_bundlers-someversion.tar.gz
-      #   DECLARATIVE_WIDGETS /src/jupyter_declarativewidgets-someversion.tar.gz
+      #   CMS: /src/jupyter_cms-someversion.tar.gz
+      #   DASHBOARDS_BUNDLERS: /src/jupyter_dashboards_bundlers-someversion.tar.gz
+      #   DECLARATIVE_WIDGETS: /src/jupyter_declarativewidgets-someversion.tar.gz
     volumes:
       - /home/jovyan/work
     ports:
@@ -55,7 +55,7 @@ services:
       # source code for declarative widgets. NOTE: This MUST match the version
       # set for notebook above if you uncomment it
       # args:
-      #   DECLARATIVE_WIDGETS /src/jupyter_declarativewidgets-someversion.tar.gz
+      #   DECLARATIVE_WIDGETS: /src/jupyter_declarativewidgets-someversion.tar.gz
     volumes_from:
       - notebook
     environment:
