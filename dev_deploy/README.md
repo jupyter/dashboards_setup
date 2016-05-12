@@ -48,14 +48,14 @@ popd
 
 # edit docker-compose.yml, in the notebooks section, set:
 # args:
-#   DASHBOARDS /src/jupyter_dashboards-0.6.0.dev0.tar.gz
+#   DASHBOARDS: /src/jupyter_dashboards-0.6.0.dev0.tar.gz
 # and in the dashboards section, set:
 # args:
-#   DASHBOARDS_SERVER /src
+#   DASHBOARDS_SERVER: /src
 
 # then ...
 make build
-make up
+make run
 ```
 
 See the `build.args` sections in `docker-compose.yml` for the full list of components that you can replace with development versions. Note also that the `kernel_gateway` service and the `notebook` service share the `/home/jovyan/work` volume. This makes testing of notebook-dashboards that use local data files in that volume easier.
