@@ -29,7 +29,7 @@ RUN chmod a+rX /srv/templates
 # Do the remaining installs as the unprivileged notebook user
 USER jovyan
 
-ENV DASHBOARDS_VERSION 0.5.1
+ENV DASHBOARDS_VERSION 0.5.2
 ENV DASHBOARDS_BUNDLERS_VERSION 0.7.0
 ENV DECL_WIDGETS_VERSION 0.5.1
 ENV CMS_VERSION 0.5.0

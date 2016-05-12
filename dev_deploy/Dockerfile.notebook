@@ -19,7 +19,7 @@ RUN apt-get update && \
 USER jovyan
 
 # Install dashboard layout and preview within Jupyter Notebook
-ARG DASHBOARDS='jupyter_dashboards==0.5.1'
+ARG DASHBOARDS='jupyter_dashboards==0.5.2'
 COPY ./dashboards/dist/ /src/
 RUN pip install $DASHBOARDS && \
 	jupyter dashboards install --user --symlink && \
