@@ -11,7 +11,7 @@ services:
       dockerfile: Dockerfile.notebook
       args:
           # pip versioning:
-          DASHBOARDS_VER: '0.5.0'
+          DASHBOARDS_VER: '0.5.1'
           DECLWIDGETS_VER: '0.5.1'
           CMS_VER: '0.5.0'
           BUNDLER_VER: '0.7.0'
