@@ -19,30 +19,30 @@ RUN apt-get update && \
 USER jovyan
 
 # Install dashboard layout and preview within Jupyter Notebook
-ARG DASHBOARDS='jupyter_dashboards==0.5.2'
+ARG DASHBOARDS_PKG
 COPY ./dashboards/dist/ /src/
-RUN pip install $DASHBOARDS && \
+RUN pip install "$DASHBOARDS_PKG" && \
 	jupyter dashboards install --user --symlink && \
 	jupyter dashboards activate
 
 # Install declarative widgets for Jupyter Notebook
-ARG DECLARATIVE_WIDGETS='jupyter_declarativewidgets==0.5.1'
+ARG DECLWIDGETS_PKG
 COPY ./declarativewidgets/dist/ /src/
-RUN pip install $DECLARATIVE_WIDGETS && \
+RUN pip install "$DECLWIDGETS_PKG" && \
 	jupyter declarativewidgets install --user --symlink && \
 	jupyter declarativewidgets activate
 
 # Install content management to support dashboard bundler options
-ARG CMS='jupyter_cms==0.5.0'
+ARG CMS_PKG
 COPY ./contentmanagement/dist/ /src/
-RUN pip install $CMS && \
+RUN pip install "$CMS_PKG" && \
 	jupyter cms install --user --symlink && \
 	jupyter cms activate
 
 # Install dashboard bundlers
-ARG DASHBOARDS_BUNDLERS='jupyter_dashboards_bundlers==0.7.0'
+ARG BUNDLER_PKG
 COPY ./dashboards_bundlers/dist/ /src/
-RUN pip install $DASHBOARDS_BUNDLERS && \
+RUN pip install "$BUNDLER_PKG" && \
 	jupyter dashboards_bundlers activate
 
 # Put a couple sample notebooks into the notebook server

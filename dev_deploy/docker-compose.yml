@@ -9,14 +9,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.notebook
-      # Uncomment the args line and one or more lines below it in order to use
-      # a locally built copy of the development source code instead of the 
-      # stable release set in the Dockerfile
-      # args:
-      #   DASHBOARDS: /src/jupyter_dashboards-0.6.0.dev0.tar.gz
-      #   CMS: /src/jupyter_cms-someversion.tar.gz
-      #   DASHBOARDS_BUNDLERS: /src/jupyter_dashboards_bundlers-someversion.tar.gz
-      #   DECLARATIVE_WIDGETS: /src/jupyter_declarativewidgets-someversion.tar.gz
+      args:
+        # pip versioning by default
+        # Replace with local tarballs like /src/jupyter_dashboards-0.6.0.dev0.tar.gz
+        DASHBOARDS_PKG: 'jupyter_dashboards==0.5.2'
+        DECLWIDGETS_PKG: 'jupyter_declarativewidgets==0.5.1'
+        CMS_PKG: 'jupyter_cms==0.5.0'
+        BUNDLER_PKG: 'jupyter_dashboards_bundlers==0.7.0'
     volumes:
       - /home/jovyan/work
     ports:
@@ -34,10 +33,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dashboards
-      # Uncomment the lines below to use the local clone of dashboards server
-      # instead of the stable npmjs.org release
-      # args:
-      #   DASHBOARDS_SERVER: /src
+      args:
+        # npm versioning by default
+        # Replace with local source tree /src
+        DASHBOARDS_SERVER_PKG: 'jupyter-dashboards-server@>=0.5.0 <0.6.0'
     ports:
       - "3000:3000"
     environment:
@@ -51,11 +50,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.kernel
-      # Uncomment the lines below to use a locally built copy of the development
-      # source code for declarative widgets. NOTE: This MUST match the version
-      # set for notebook above if you uncomment it
-      # args:
-      #   DECLARATIVE_WIDGETS: /src/jupyter_declarativewidgets-someversion.tar.gz
+      args:
+        # pip versioning by default
+        # Replace with local tarballs like /src/jupyter_declarativewidgets-someversion.tar.gz
+        DECLWIDGETS_PKG: 'jupyter_declarativewidgets==0.5.1'
+        IPYWIDGETS_PKG: 'ipywidgets==5.0'
     volumes_from:
       - notebook
     environment:

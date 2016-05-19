@@ -3,15 +3,16 @@
 
 FROM jupyter/pyspark-notebook:0017b56d93c9
 
-RUN pip install jupyter_kernel_gateway==0.5.1
-# install ipywidgets 5.0
-RUN pip install 'ipywidgets==5.0'
+RUN pip install "jupyter_kernel_gateway==0.5.1"
+
+ARG IPYWIDGETS_PKG
+RUN pip install "$IPYWIDGETS_PKG"
 
 # install Declarative Widgets python package
 # don't bother activating the extension, not needed outside notebook
-ARG DECLARATIVE_WIDGETS='jupyter_declarativewidgets==0.5.1'
+ARG DECLWIDGETS_PKG
 COPY ./declarativewidgets/dist/ /src/
-RUN pip install $DECLARATIVE_WIDGETS
+RUN pip install "$DECLWIDGETS_PKG"
 
 # run kernel gateway, not notebook server
 CMD ["jupyter", "kernelgateway", "--KernelGatewayApp.ip=0.0.0.0"]
