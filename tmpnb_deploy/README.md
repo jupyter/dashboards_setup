@@ -1,4 +1,4 @@
-Deploys a tmpnb site running Juptyer Notebook with the jupyter_dashboards, jupyter_dashboards_bundlers, jupyter_declarativewidgets, and jupyter_cms extensions pre-installed along with a bunch of demos notebooks.
+Deploys a tmpnb site running Jupyter Notebook with the jupyter_dashboards, jupyter_dashboards_bundlers, jupyter_declarativewidgets, and jupyter_cms extensions pre-installed along with a bunch of demos notebooks.
 
 The site at http://jupyter.cloudet.xyz is a sample deployment.
 
