@@ -12,10 +12,10 @@ services:
       args:
         # pip versioning by default
         # Replace with local tarballs like /src/jupyter_dashboards-0.6.0.dev0.tar.gz
-        DASHBOARDS_PKG: 'jupyter_dashboards==0.5.2'
-        DECLWIDGETS_PKG: 'jupyter_declarativewidgets==0.5.1'
-        CMS_PKG: 'jupyter_cms==0.5.0'
-        BUNDLER_PKG: 'jupyter_dashboards_bundlers==0.7.0'
+        DASHBOARDS_PKG: 'jupyter_dashboards==0.5.*'
+        DECLWIDGETS_PKG: 'jupyter_declarativewidgets==0.5.2'
+        CMS_PKG: 'jupyter_cms==0.5.*'
+        BUNDLER_PKG: 'jupyter_dashboards_bundlers==0.7.*'
     volumes:
       - /home/jovyan/work
     ports:
@@ -36,7 +36,7 @@ services:
       args:
         # npm versioning by default
         # Replace with local source tree /src
-        DASHBOARDS_SERVER_PKG: 'jupyter-dashboards-server@>=0.5.0 <0.6.0'
+        DASHBOARDS_SERVER_PKG: 'jupyter-dashboards-server@>=0.6.0 <0.7.0'
     ports:
       - "3000:3000"
     environment:
@@ -53,8 +53,8 @@ services:
       args:
         # pip versioning by default
         # Replace with local tarballs like /src/jupyter_declarativewidgets-someversion.tar.gz
-        DECLWIDGETS_PKG: 'jupyter_declarativewidgets==0.5.1'
-        IPYWIDGETS_PKG: 'ipywidgets==5.0'
+        DECLWIDGETS_PKG: 'jupyter_declarativewidgets==0.5.2'
+        IPYWIDGETS_PKG: 'ipywidgets==5.1.*'
     volumes_from:
       - notebook
     environment:
