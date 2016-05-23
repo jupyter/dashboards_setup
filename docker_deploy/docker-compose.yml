@@ -45,6 +45,7 @@ services:
     environment:
       PORT: 3000
       KERNEL_GATEWAY_URL: http://kernel_gateway:8888
+      SESSION_SECRET_TOKEN: cookie_session_secret
       AUTH_TOKEN: notebook_to_dashboard_secret
       USERNAME: demo
       PASSWORD: demo
