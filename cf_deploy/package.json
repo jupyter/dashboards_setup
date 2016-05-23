@@ -4,6 +4,6 @@
     "node": ">=5.5.0 <6.0.0"
   },
   "dependencies": {
-    "jupyter-dashboards-server": "^0.5.0"
+    "jupyter-dashboards-server": "^0.6.0"
   }
 }
