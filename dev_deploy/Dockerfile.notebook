@@ -2,7 +2,7 @@
 # Distributed under the terms of the Modified BSD License.
 
 # Pin to a known release for sanity
-FROM jupyter/pyspark-notebook:0017b56d93c9
+FROM jupyter/pyspark-notebook:8015c88c4b11
 
 # Become root to do the apt-gets
 USER root
