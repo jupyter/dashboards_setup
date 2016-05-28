@@ -31,7 +31,7 @@ USER jovyan
 
 ENV DASHBOARDS_VERSION 0.5.2
 ENV DASHBOARDS_BUNDLERS_VERSION 0.7.0
-ENV DECL_WIDGETS_VERSION 0.5.1
+ENV DECL_WIDGETS_VERSION 0.5.2
 ENV CMS_VERSION 0.5.0
 
 # Install incubator extensions
@@ -71,7 +71,7 @@ RUN cd /tmp && \
 
 # Add the 2015 UX survey notebook / dashboard
 RUN cd /tmp && \
-    wget -qO src.tar.gz https://github.com/peller/design/archive/f3b8d87be98f34c4a08b5f05fb3243512c18100f.tar.gz && \
+    wget -qO src.tar.gz https://github.com/jupyter/design/archive/f3b8d87be98f34c4a08b5f05fb3243512c18100f.tar.gz && \
     tar xzf src.tar.gz && \
     mv design*/surveys/2015-notebook-ux $HOME/work/2015-notebook-ux-survey && \
     find $HOME/work/2015-notebook-ux-survey -type f -name '*.ipynb' -print0 | xargs -0 sed -i 's$\./prep/$/home/jovyan/work/2015-notebook-ux-survey/analysis/prep/$g' && \

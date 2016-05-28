@@ -2,7 +2,7 @@
 # Distributed under the terms of the Modified BSD License.
 
 # Pin to a known release for sanity
-FROM jupyter/pyspark-notebook:0017b56d93c9
+FROM jupyter/pyspark-notebook:8015c88c4b11
 
 # Become root to do the apt-gets
 USER root
@@ -22,28 +22,25 @@ USER jovyan
 ARG DASHBOARDS_PKG
 COPY ./dashboards/dist/ /src/
 RUN pip install "$DASHBOARDS_PKG" && \
-	jupyter dashboards install --user --symlink && \
-	jupyter dashboards activate
+	jupyter dashboards quick-setup --sys-prefix
 
 # Install declarative widgets for Jupyter Notebook
 ARG DECLWIDGETS_PKG
 COPY ./declarativewidgets/dist/ /src/
 RUN pip install "$DECLWIDGETS_PKG" && \
-	jupyter declarativewidgets install --user --symlink && \
-	jupyter declarativewidgets activate
+	jupyter declarativewidgets quick-setup --sys-prefix
 
 # Install content management to support dashboard bundler options
 ARG CMS_PKG
 COPY ./contentmanagement/dist/ /src/
 RUN pip install "$CMS_PKG" && \
-	jupyter cms install --user --symlink && \
-	jupyter cms activate
+	jupyter cms quick-setup --sys-prefix
 
 # Install dashboard bundlers
 ARG BUNDLER_PKG
 COPY ./dashboards_bundlers/dist/ /src/
 RUN pip install "$BUNDLER_PKG" && \
-	jupyter dashboards_bundlers activate
+	jupyter dashboards_bundlers quick-setup --sys-prefix
 
 # Put a couple sample notebooks into the notebook server
 RUN wget -O $HOME/work/hello_world.ipynb https://gist.githubusercontent.com/parente/bd6789c4a3533fab8085/raw/c5a8e9be2213650332889178b15cf899a844694f/hello_world.ipynb
