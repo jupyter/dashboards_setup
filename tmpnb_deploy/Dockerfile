@@ -1,7 +1,7 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
 
-FROM jupyter/all-spark-notebook:2d878db5cbff
+FROM jupyter/all-spark-notebook:8015c88c4b11
 
 # Become root to do the apt-gets
 USER root
