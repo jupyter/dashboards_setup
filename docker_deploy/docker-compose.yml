@@ -12,7 +12,7 @@ services:
       args:
           # pip versioning:
           DASHBOARDS_VER: '0.5.*'
-          DECLWIDGETS_VER: '0.5.2'
+          DECLWIDGETS_VER: '0.5.*'
           CMS_VER: '0.5.*'
           BUNDLER_VER: '0.7.*'
     ports:
@@ -57,7 +57,7 @@ services:
       args:
           # pip versioning:
           IPYWIDGETS_VER: '5.1.*'
-          DECLWIDGETS_VER: '0.5.2'
+          DECLWIDGETS_VER: '0.5.*'
     environment:
       KG_ALLOW_ORIGIN: '*'
 
