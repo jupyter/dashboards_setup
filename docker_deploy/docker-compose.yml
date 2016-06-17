@@ -11,10 +11,10 @@ services:
       dockerfile: Dockerfile.notebook
       args:
           # pip versioning:
-          DASHBOARDS_VER: '0.5.*'
-          DECLWIDGETS_VER: '0.5.*'
+          DASHBOARDS_VER: '0.6.*'
+          DECLWIDGETS_VER: '0.6.*'
           CMS_VER: '0.5.*'
-          BUNDLER_VER: '0.7.*'
+          BUNDLER_VER: '0.8.*'
     ports:
       - "8888:8888"
     depends_on:
@@ -35,7 +35,7 @@ services:
       dockerfile: Dockerfile.dashboards
       args:
           # npm versioning:
-          DASHBOARDS_SERVER_VER: '>=0.6.0 <0.7.0'
+          DASHBOARDS_SERVER_VER: '>=0.7.0 <0.8.0'
     ports:
       - "3000:3000"
     depends_on:
@@ -57,7 +57,7 @@ services:
       args:
           # pip versioning:
           IPYWIDGETS_VER: '5.1.*'
-          DECLWIDGETS_VER: '0.5.*'
+          DECLWIDGETS_VER: '0.6.*'
     environment:
       KG_ALLOW_ORIGIN: '*'
 
