@@ -36,7 +36,6 @@ RUN pip install "jupyter_dashboards_bundlers==$BUNDLER_VER" && \
 
 # Put a couple sample notebooks into the notebook server
 RUN wget -O $HOME/work/hello_world.ipynb https://gist.githubusercontent.com/parente/bd6789c4a3533fab8085/raw/c5a8e9be2213650332889178b15cf899a844694f/hello_world.ipynb
-RUN wget -O $HOME/work/taxi_demo_grid.ipynb https://gist.githubusercontent.com/jhpedemonte/f6d9f3f2bbecee1cd26e3b963283ef12/raw/6a98189e82ba5b42008a5ca51382e9f9c3ab801f/taxi_demo_grid.ipynb
 RUN wget -O $HOME/work/meetup-streaming.ipynb https://raw.githubusercontent.com/jupyter-incubator/dashboards/master/etc/notebooks/stream_demo/meetup-streaming.ipynb
 
 # Stay as jovyan in the newer docker stack images
