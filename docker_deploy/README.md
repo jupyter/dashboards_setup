@@ -18,6 +18,8 @@ After running the above, open a browser to `http://<your docker host IP>:8888` t
 
 If you want to run the `meetup-streaming` notebook on the dashboard server, make sure you run them first in the notebook server so that all of the declarative widgets are available for deployment.
 
+If you want to customize the secrets used in the deployment, make changes to the `nb_secrets.env` and `db_secrets.env` files. Keep in mind that storing secrets in environment files may not be appropriate for your use case. 
+
 ## See It
 
 ![Notebook to dashboard screencast](https://ibm.box.com/shared/static/ftjiytnmjabf6awg9oxywosgpbq9o9fd.gif)
