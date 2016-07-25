@@ -25,7 +25,6 @@ services:
       - work:/home/jovyan/work
     env_file: nb_secrets.env
     environment:
-      DASHBOARD_REDIRECT_URL: http://{hostname}:3000/
       DASHBOARD_SERVER_URL: http://dashboards:3000/
 
   dashboards:
