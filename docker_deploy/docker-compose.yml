@@ -25,8 +25,8 @@ services:
       - work:/home/jovyan/work
     env_file: nb_secrets.env
     environment:
-      DASHBOARD_REDIRECT_URL: http://{hostname}:3000/
       DASHBOARD_SERVER_URL: http://dashboards:3000/
+    restart: always
 
   dashboards:
     build:
@@ -45,6 +45,7 @@ services:
     environment:
       PORT: 3000
       KERNEL_GATEWAY_URL: http://kernel_gateway:8888
+    restart: always
 
   kernel_gateway:
     build:
@@ -56,6 +57,7 @@ services:
         DECLWIDGETS_VER: '0.6.*'
     environment:
       KG_ALLOW_ORIGIN: '*'
+    restart: always
 
 volumes:
   work:

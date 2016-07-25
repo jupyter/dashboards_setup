@@ -10,7 +10,13 @@ This folder contains a recipe for deploying a dashboard server, kernel gateway s
 
 ```
 eval $(docker-machine env your_host)
-docker-compose build  # add --no-cache --force-rm if switching versions
+
+# add --no-cache --force-rm if switching versions
+docker-compose build
+
+# modify the passwords, redirect URLs, etc. in
+# nb_secrets.env and db_secrets.env to fit your environment
+
 docker-compose up
 ```
 
