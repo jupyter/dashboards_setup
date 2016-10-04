@@ -13,7 +13,7 @@ services:
         # pip versioning by default
         # Replace with local tarballs like /src/jupyter_dashboards-0.6.0.dev0.tar.gz
         DASHBOARDS_PKG: 'jupyter_dashboards==0.6.*'
-        DECLWIDGETS_PKG: 'jupyter_declarativewidgets==0.6.*'
+        DECLWIDGETS_PKG: 'jupyter_declarativewidgets==0.7.*'
         CMS_PKG: 'jupyter_cms==0.5.*'
         BUNDLER_PKG: 'jupyter_dashboards_bundlers==0.8.*'
     volumes:
@@ -53,7 +53,7 @@ services:
       args:
         # pip versioning by default
         # Replace with local tarballs like /src/jupyter_declarativewidgets-someversion.tar.gz
-        DECLWIDGETS_PKG: 'jupyter_declarativewidgets==0.6.*'
+        DECLWIDGETS_PKG: 'jupyter_declarativewidgets==0.7.*'
         IPYWIDGETS_PKG: 'ipywidgets==5.1.*'
     volumes_from:
       - notebook
