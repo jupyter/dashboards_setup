@@ -1,3 +1,9 @@
+# [RETIRED] Jupyter Dashboards Setup
+
+**This project has been retired.** See the [proposal to move the project to jupyter-attic](https://github.com/jupyter/enhancement-proposals/blob/master/jupyter-dashboards-deployment-attic/jupyter-dashboards-deployment-attic.md), [announcement of the proposal on the mailing list](https://groups.google.com/forum/#!topic/jupyter/icEtCVLniRc), and [Steering Council vote on the proposal PR](https://github.com/jupyter/enhancement-proposals/pull/22) for more information.
+
+----
+
 Contains recipes for setting up dashboard-related projects using various technologies (e.g., tmpnb, Docker, Cloud Foundry). See the README in each subfolder for additional information.
 
 * [cf_deploy](cf_deploy/) - Linked dashboard and kernel gateway servers on Cloud Foundry using stable releases
